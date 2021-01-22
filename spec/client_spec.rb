@@ -99,7 +99,7 @@ describe Geocodio::Client do
         VCR.use_cassette('reverse') do
           addresses = geocodio.reverse_geocode([coordinates])
 
-          expect(addresses.size).to eq(5)
+          expect(addresses.size).to eq(8)
           expect(addresses).to be_a(Geocodio::AddressSet)
         end
       end
@@ -115,7 +115,7 @@ describe Geocodio::Client do
           lat, lng = coordinates.split(',')
           addresses = geocodio.reverse_geocode([{ latitude: lat, longitude: lng }])
 
-          expect(addresses.size).to eq(5)
+          expect(addresses.size).to eq(8)
           expect(addresses).to be_a(Geocodio::AddressSet)
         end
       end
@@ -125,7 +125,7 @@ describe Geocodio::Client do
           lat, lng = coordinates.split(',')
           addresses = geocodio.reverse_geocode([{ latitude: lat, longitude: lng} ], fields: %w[cd stateleg school timezone])
 
-          expect(addresses.size).to eq(5)
+          expect(addresses.size).to eq(8)
           expect(addresses).to be_a(Geocodio::AddressSet)
         end
       end

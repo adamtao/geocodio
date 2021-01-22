@@ -94,10 +94,10 @@ Note that this endpoint performs no geocoding; it merely formats a single provid
 
 ### Additional fields
 
-Geocodio has added support for retrieving [additional fields][fields] when geocoding or reverse geocoding. To request these fields, pass an options hash to either `#geocode` or `#reverse_geocode`. Possible fields include `cd` or `cd113`, `stateleg`, `school`, and `timezone`:
+Geocodio has added support for retrieving [additional fields][fields] when geocoding or reverse geocoding. To request these fields, pass an options hash to either `#geocode` or `#reverse_geocode`. Possible fields include `cd` or `cd113`, `stateleg`, `school`, `timezone`, and `zip4`:
 
 ```ruby
-address = geocodio.geocode(['54 West Colorado Boulevard Pasadena CA 91105'], fields: %w[cd stateleg school timezone]).best
+address = geocodio.geocode(['54 West Colorado Boulevard Pasadena CA 91105'], fields: %w[cd stateleg school timezone zip4]).best
 
 address.congressional_districts
 # => #<Geocodio::CongressionalDistrict:0x007fa3c15f41c0 @name="Congressional District 27" @district_number=27 @congress_number=113 @congress_years=2013..2015>
@@ -115,6 +115,9 @@ address.timezone
 # => #<Geocodio::Timezone:0x007fa3c15f41c0 @name="PST" @utc_offset=-8 @observes_dst=true>
 address.timezone.observes_dst?
 # => true
+
+address.zip4
+# => #<Geocodio::Zip4:0x007fa3c1541c0 @plus4="1923" @zip9="91105-1923">
 ```
 
 ## Contributing
