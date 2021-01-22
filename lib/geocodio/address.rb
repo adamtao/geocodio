@@ -2,6 +2,7 @@ require 'geocodio/congressional_district'
 require 'geocodio/school_district'
 require 'geocodio/state_legislative_district'
 require 'geocodio/timezone'
+require 'geocodio/zip4'
 
 module Geocodio
   class Address
@@ -14,7 +15,7 @@ module Geocodio
 
     attr_reader :congressional_districts, :house_district, :senate_district,
                 :unified_school_district, :elementary_school_district,
-                :secondary_school_district
+                :secondary_school_district, :zip4
 
     attr_reader :timezone
 
@@ -65,6 +66,7 @@ module Geocodio
       set_legislative_districts(fields['state_legislative_districts']) if fields['state_legislative_districts']
       set_school_districts(fields['school_districts'])                 if fields['school_districts']
       set_timezone(fields['timezone'])                                 if fields['timezone']
+      set_zip4(fields['zip4'])                                         if fields['zip4']
     end
 
     def set_congressional_districts(districts)
@@ -95,6 +97,12 @@ module Geocodio
       return if timezone.empty?
 
       @timezone = Timezone.new(timezone)
+    end
+
+    def set_zip4(zip4)
+      return if zip4.empty?
+
+      @zip4 = Zip4.new(zip4)
     end
 
     def <=>(address)
